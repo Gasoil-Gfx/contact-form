@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+html{
+    background: url(/assets/img/mountains-carpathians.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+body{
+    background: transparent;
+}
+
+.form-label{
+    margin: .5rem auto .2rem auto;
+    color: white;
+}
+
+form{
+    margin: 6rem auto;
+    padding: 3rem 2rem;
+    width: 50%;
+    border-radius: 1rem;
+    background: linear-gradient(90deg, rgb(34, 140, 156), rgb(63, 141, 124));
+}
+
+.btn{
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    padding: .5rem 5rem;
+    background: rgb(10, 114, 79);
+    transition: all 250ms ease;
+}
+
+.btn:hover,.btn:active,.btn:focus,.btn:focus-visible,.btn:focus-within,.btn:visited,.btn:target{
+    color: white;
+    background: rgb(0, 78, 52);
+}
+
+button.btn{
+    display: flex;
+    margin: 2rem auto 0;
+}
+
+@media screen and (max-width: 1000px) {
+
+    form{
+        width:80%;
+    }
+
+    .btn{
+        padding: .5rem 2rem;
+    }
+}
