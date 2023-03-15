@@ -1,10 +1,12 @@
 const express = require('express');
+const multer = require('multer');
+const upload = multer();
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 
-const { EMAIL_USER, EMAIL_PASS } = process.env;
+const { EMAIL_USER, EMAIL_PASS, RECEIVER_EMAIL} = process.env;
 
 
 const transporter = nodemailer.createTransport({
@@ -20,8 +22,8 @@ const app = express();
 
 app.use(express.static('public'));
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 
 app.get('/contact', (req, res) => {
@@ -29,30 +31,27 @@ app.get('/contact', (req, res) => {
 });
 
 
-app.post('/contact', async (req, res) => {
-  const { name, email, message } = req.body;
-
+app.post('/contact', upload.none(), async (req, res) => {
+  const { contactFullName, contactEmail, contactPhone, contactMsgSubject, contactMessage } = req.body;
   const mailOptions = {
-    from: email,
-    to: EMAIL_USER,
+    from: contactEmail,
+    to: RECEIVER_EMAIL,
     subject: 'New message from your website contact form',
-    text: `
-      Name: ${name}
-      Email: ${email}
-      Message: ${message}
-    `
+    text: `Name: ${contactFullName}\nEmail: ${contactEmail}\nPhone: ${contactPhone}\nSubject: ${contactMsgSubject}\nMessage: ${contactMessage}`
   };
+  
 
   try {
     
     const info = await transporter.sendMail(mailOptions);
     console.log(`Email sent: ${info.response}`);
-    res.send('Thank you for your message!');
+    res.sendStatus(200);
   } catch (error) {
     console.error(error);
-    res.status(500).send('Error sending email');
+    res.sendStatus(500);
   }
 });
+
 
 
 const PORT = process.env.PORT || 5000;

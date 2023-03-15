@@ -9,6 +9,16 @@ html{
     background-size: cover;
 }
 
+
+.modal-body h4,
+.modal-body h6 {
+  display: block;
+  margin: 0; /* Optional to remove default margin */
+}
+
+
+
+
 body{
     background: transparent;
 }
@@ -19,7 +29,7 @@ body{
 }
 
 form{
-    margin: 6rem auto;
+    margin: 2rem auto;
     padding: 3rem 2rem;
     width: 50%;
     border-radius: 1rem;
@@ -44,6 +54,19 @@ button.btn{
     display: flex;
     margin: 2rem auto 0;
 }
+
+#confirmation-message {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border: 1px solid #d6e9c6;
+    padding: 10px;
+    margin-top: 10px;
+}
+  
+.btn-check:checked + .btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check) + .btn:active {
+    background-color: #3c763d;
+    border:none;
+  }
 
 @media screen and (max-width: 1000px) {
 
