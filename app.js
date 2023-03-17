@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-app.get('/contact', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(__dirname + '/contact.html');
 });
 

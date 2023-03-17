@@ -8,6 +8,39 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .spinner-background {
+            position: fixed;
+            display: block;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent grey */
+            z-index: 50; /* Higher than other elements */
+            }
+
+            .spinner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 50px;
+            height: 50px;
+            margin-top: -25px;
+            margin-left: -25px;
+            border-radius: 50%;
+            border: .6rem solid #dbdbdb;
+            border-top-color: #d83434;
+            animation: spinner 1s linear infinite;
+            z-index: 1000; /* Above background */
+            }
+
+            @keyframes spinner {
+            to {
+                transform: rotate(360deg);
+            }
+            }
+    </style>
 </head>
 <body class="container">
     <form id="contact-form">
@@ -34,6 +67,10 @@
         <button class="btn" type="submit" id="submit">Send</button>
     </form>
 
+    <div class="spinner-background">
+        <div class="spinner"></div>
+      </div>
+
     <div class="modal fade text-center" id="contactFormSent" tabindex="-1" aria-labelledby="contactFormSentLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-center">
@@ -57,9 +94,11 @@
     <script>
         const contactForm = document.getElementById("contact-form");
         const contactFormSentModal = new bootstrap.Modal(document.getElementById("contactFormSent"));
+        const spinnerBackground = document.querySelector('.spinner-background');
 
         contactForm.addEventListener("submit", function(event) {
         event.preventDefault();
+        spinnerBackground.style.display = 'block';
         console.log("Form submitted!");
 
         const formData = new FormData(contactForm);
@@ -69,6 +108,7 @@
                 console.log("Message sent!");
                 contactForm.reset();
                 contactFormSentModal.show();
+                spinnerBackground.style.display = 'none';
                 return response.text();
             } else {
                 console.log("Response not OK:", response);
