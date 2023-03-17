@@ -1,4 +1,4 @@
-<b>Node.js Express Contact Form</b><br>
+<b>Node.js Express Contact Us Form</b><br>
 
 This is a simple contact form built with Node.js and Express.js that allows users to send messages to a designated email address. This contact form is ideal for websites or applications that need a basic form of communication between users and administrators.<br>
 
