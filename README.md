@@ -8,6 +8,7 @@ This is a simple contact form built with Node.js and Express.js that allows user
     <li>Sends email notification to designated email address with user message</li>
     <li>Displays success message after the form is submitted</li>
     <li>Built using Node.js and Express.js</li>
+    <li>Uses pure css and vanilla js loading animation</li>
     <li>Uses Ajax to post the form, then returns a success message while staying on the same page</li>
 </ul>
 
